@@ -1,0 +1,48 @@
+
+    /* Dark Mode */
+    .dark-mode {
+        background-color: #121212;
+        color: #ffffff;
+    }
+
+    .dark-mode .card {
+        background-color: #1e1e1e;
+        color: white;
+    }
+
+    .dark-mode .btn {
+        border-color: #ffffff;
+        color: #ffffff;
+    }
+
+    .dark-mode a {
+        color: #90caf9;
+    }
+
+    .dark-mode .breadcrumb {
+        background-color: #1e1e1e;
+    }
+
+    /* Hover Effects for Dark Mode */
+    .dark-mode .btn:hover {
+        background-color: #333;
+        color: #fff;
+    }
+
+    .dark-mode a:hover {
+        color: #bbdefb;
+    }
+
+    /* Scrollbar */
+    .dark-mode ::-webkit-scrollbar {
+        background-color: #1e1e1e;
+    }
+
+    .dark-mode ::-webkit-scrollbar-thumb {
+        background-color: #333;
+    }
+
+    /* Icons */
+    .dark-mode i {
+        color: #ffffff;
+    }
