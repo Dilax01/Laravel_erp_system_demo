@@ -25,6 +25,7 @@ $title = 'User Attendances';
       <h2 class="h4">All {{ $title }}s</h2>
     </div>
   </div>
+  
   <div class="card card-body table-wrapper table-responsive border-0 shadow">
     <h2 class="text-muted mb-3 text-center">{{ $user->full_name }}</h2>
     <table class="table-hover table">

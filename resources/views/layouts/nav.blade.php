@@ -1,17 +1,8 @@
-<nav class="navbar navbar-dark navbar-theme-primary px-4 col-12 d-md-none">
-    <a class="navbar-brand me-lg-5" href="/index.html">
-        <img class="navbar-brand-dark" src="/assets/img/brand/light.svg" alt="Volt logo" /> <img class="navbar-brand-light" src="/assets/img/brand/dark.svg" alt="Volt logo" />
-    </a>
-    <div class="d-flex align-items-center">
-        <button class="navbar-toggler d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-    </div>
-</nav>
-
-<!-- Inside your <ul class="navbar-nav"> or anywhere visible in nav -->
-<li class="nav-item">
-  <button onclick="toggleDarkMode()" class="btn btn-sm btn-outline-primary ms-3">
-    🌙 / 🌞 Theme
-  </button>
-</li>
+<button id="theme-toggle" onclick="toggleDarkMode()" class="btn btn-sm btn-outline-primary"
+    style="position: fixed; top: 15px; right: 280px; z-index: 9999; 
+           border-radius: 50%; width: 50px; height: 50px; 
+           background: linear-gradient(135deg, #4e54c8, #8f94fb); 
+           color: white; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+           border: none; transition: transform 0.2s, box-shadow 0.2s;">
+    <i class="fas fa-moon"></i>
+</button>

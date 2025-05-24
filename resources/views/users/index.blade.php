@@ -32,7 +32,13 @@
       </a>
     </div>
   </div>
+  <div class="d-flex justify-content-between mb-3">
+  <form action="{{ route('users.index') }}" method="GET" class="d-flex">
+    <input type="text" name="search" class="form-control" placeholder="Search by name or email" value="{{ request()->get('search') }}">
+    <button type="submit" class="btn btn-primary ms-2">Search</button>
+</form>
 
+</div>
   <div class="card card-body table-wrapper table-responsive border-0 shadow">
     <table class="table-hover table">
       <thead>

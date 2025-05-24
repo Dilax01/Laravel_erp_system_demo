@@ -1,13 +1,25 @@
 <div class="theme-settings card bg-gray-800 pt-2 collapse" id="theme-settings">
     <div class="card-body bg-gray-800 text-white pt-4">
-        <button type="button" class="btn-close theme-settings-close" aria-label="Close" data-bs-toggle="collapse"
-            href="#theme-settings" role="button" aria-expanded="false" aria-controls="theme-settings"></button>
-        <div class="d-flex justify-content-between align-items-center mb-3">
-            <p class="m-0 mb-1 me-4 fs-7">Open source <span role="img" aria-label="gratitude">💛</span></p>
+        
+    
+    <button type="button" class="btn-close theme-settings-close" aria-label="Close" data-bs-toggle="collapse"
+            href="#theme-settings" role="button" aria-expanded="false" aria-controls="theme-settings">
+        
+    </button>
+        
+            <div class="d-flex justify-content-between align-items-center mb-3">
+            
+            <p class="m-0 mb-1 me-4 fs-7">Open source 
+                <span role="img" aria-label="gratitude">💛
+
+                </span>
+            </p>
+            
             <a class="github-button" href="https://github.com/themesberg/volt-laravel-admin-dashboard"
                 data-color-scheme="no-preference: dark; light: light; dark: light;" data-icon="octicon-star"
                 data-size="large" data-show-count="true"
-                aria-label="Star themesberg/volt-bootstrap-5-dashboard on GitHub">Star</a>
+                aria-label="Star themesberg/volt-bootstrap-5-dashboard on GitHub">Star
+            </a>
         </div>
         <a href="https://themesberg.com/product/laravel/volt-admin-dashboard-template" target="_blank"
             class="btn btn-secondary d-inline-flex align-items-center justify-content-center mb-3 w-100">

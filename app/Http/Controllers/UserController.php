@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\View;
 
 class UserController extends Controller
 {
-
     public function __construct()
     {
         View::share([
@@ -24,11 +23,32 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $users = User::with('job', 'job.department')->whereIsAdmin(0)->orderByDesc("created_at")->paginate(15);
-        return view("users.index", compact("users"));
-    }
+    public function index(Request $request)
+{
+    $search = $request->get('search');
+
+    $users = User::with('job', 'job.department')
+        ->where('is_admin', 0)
+        ->when($search, function ($query) use ($search) {
+            $query->where(function ($q) use ($search) {
+                $q->whereRaw("CONCAT(first_name, ' ', last_name) LIKE ?", ["{$search}%"])
+                  ->orWhere('email', 'like', "{$search}%")
+                  ->orWhereHas('job', function ($q2) use ($search) {
+                      $q2->where('title', 'like', "{$search}%");
+                  })
+                  ->orWhereHas('job.department', function ($q3) use ($search) {
+                      $q3->where('name', 'like', "{$search}%");
+                  });
+            });
+        })
+        ->orderByDesc('created_at')
+        ->paginate(15);
+
+    return view('users.index', compact('users'))->with('title', 'Employee');
+}
+
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -49,7 +69,6 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-
         $validator =  Validator::make(
             $request->all(),
             [
@@ -64,7 +83,6 @@ class UserController extends Controller
                 "number" => ['required', 'string'],
             ],
         );
-
 
         if ($validator->fails()) {
             return redirect()->back()
@@ -99,11 +117,11 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\User  $User
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
     public function edit(User $user)
-    {        
+    {
         $jobs = Job::pluck('title', 'id');
         return view("users.edit", compact("jobs", 'user'));
     }
@@ -112,12 +130,11 @@ class UserController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\User  $User
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, User $user)
     {
-
         if ($request->has("first_name")) {
             $user->first_name = $request->first_name;
         }
@@ -137,7 +154,7 @@ class UserController extends Controller
         if ($request->has("job")) {
             $user->job_id = $request->job;
         }
-        
+
         if ($request->has("sallary")) {
             $user->sallary = $request->sallary;
         }
@@ -178,4 +195,5 @@ class UserController extends Controller
             "icon" => "success",
         ]);
     }
+    
 }

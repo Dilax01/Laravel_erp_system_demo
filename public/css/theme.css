@@ -1,48 +1,221 @@
+/* Default light mode styles */
+body {
+    background-color: #ffffff;
+    color: #212529;
+    font-family: 'Arial', sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
 
-    /* Dark Mode */
-    .dark-mode {
-        background-color: #121212;
-        color: #ffffff;
-    }
+h1, h2, h3, h4, h5, h6 {
+    color: #212529;
+}
 
-    .dark-mode .card {
-        background-color: #1e1e1e;
-        color: white;
-    }
+.card {
+    background-color: #ffffff;
+    color: #212529;
+    border: 1px solid #dee2e6;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
 
-    .dark-mode .btn {
-        border-color: #ffffff;
-        color: #ffffff;
-    }
+.card-body {
+    padding: 1.5rem;
+}
 
-    .dark-mode a {
-        color: #90caf9;
-    }
+.table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #212529;
+    border-collapse: collapse;
+}
 
-    .dark-mode .breadcrumb {
-        background-color: #1e1e1e;
-    }
+.table th,
+.table td {
+    padding: 0.75rem;
+    text-align: left;
+    border-top: 1px solid #dee2e6;
+}
 
-    /* Hover Effects for Dark Mode */
-    .dark-mode .btn:hover {
-        background-color: #333;
-        color: #fff;
-    }
+.table thead {
+    background-color: #f8f9fa;
+}
 
-    .dark-mode a:hover {
-        color: #bbdefb;
-    }
+.table tbody tr:hover {
+    background-color: #f1f1f1;
+}
 
-    /* Scrollbar */
-    .dark-mode ::-webkit-scrollbar {
-        background-color: #1e1e1e;
-    }
+.btn {
+     
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
 
-    .dark-mode ::-webkit-scrollbar-thumb {
-        background-color: #333;
-    }
+.btn:hover {
+    background-color: #0056b3;
+}
 
-    /* Icons */
-    .dark-mode i {
-        color: #ffffff;
-    }
+input,
+textarea,
+select {
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    border: 1px solid #ced4da;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Dark mode styles */
+.dark-mode {
+    background-color: #121212;
+    color: #f1f1f1;
+}
+
+.dark-mode h1,
+.dark-mode h2,
+.dark-mode h3,
+.dark-mode h4,
+.dark-mode h5,
+.dark-mode h6 {
+    color: #f1f1f1;
+}
+
+.dark-mode .card {
+    background-color: #1e1e1e;
+    color: #f1f1f1;
+    border: 1px solid #444;
+}
+
+.dark-mode .table {
+    color: #f1f1f1;
+    background-color: #1e1e1e;
+}
+
+.dark-mode .table th,
+.dark-mode .table td {
+    border-top: 1px solid #444;
+}
+
+.dark-mode .table thead {
+    background-color: #2c2c2c;
+}
+
+.dark-mode .table tbody tr:hover {
+    background-color: #333;
+}
+
+.dark-mode .btn {
+    background-color: #3a3a3a;
+    color: #f1f1f1;
+    border-color: #555;
+}
+
+.dark-mode .btn-primary {
+    background-color: #555;
+    border-color: #666;
+}
+
+.dark-mode input,
+.dark-mode textarea,
+.dark-mode select {
+    background-color: #2a2a2a;
+    color: #f1f1f1;
+    border: 1px solid #444;
+}
+
+.dark-mode .breadcrumb {
+    background-color: #1a1a1a;
+}
+
+.dark-mode .badge {
+    background-color: #444;
+    color: #f1f1f1;
+}
+
+.dark-mode .navbar,
+.dark-mode .nav-item {
+    background-color: #121212;
+    color: #f1f1f1;
+}
+
+.dark-mode .navbar .navbar-toggler-icon {
+    background-color: #f1f1f1;
+}
+
+.dark-mode .dropdown-menu {
+    background-color: #2c2c2c;
+    border: none;
+}
+
+.dark-mode .dropdown-item {
+    color: #f1f1f1;
+}
+
+.dark-mode .dropdown-item:hover {
+    background-color: #444;
+}
+
+/* Custom Scrollbar for Dark Mode */
+.dark-mode::-webkit-scrollbar {
+    width: 8px;
+}
+
+.dark-mode::-webkit-scrollbar-thumb {
+    background-color: #444;
+    border-radius: 4px;
+}
+
+.dark-mode::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+}
+
+/* Custom Button */
+.dark-mode .btn-sm {
+    padding: 0.3rem 0.8rem;
+    border-radius: 0.2rem;
+    background-color: #444;
+}
+
+.dark-mode .btn-sm:hover {
+    background-color: #555;
+}
+
+/* For specific form controls */
+.dark-mode .form-control {
+    background-color: #333;
+    color: #f1f1f1;
+    border: 1px solid #444;
+}
+
+.dark-mode .form-control:focus {
+    background-color: #444;
+    color: #f1f1f1;
+    border-color: #555;
+}
+
+.dark-mode .breadcrumb-item a {
+    color: #f1f1f1;
+}
+
+/* Customize the card footer for dark mode */
+.dark-mode .card-footer {
+    background-color: #1a1a1a;
+    border-top: 1px solid #444;
+}
+
+/* Toggle button for Dark Mode */
+#theme-toggle {
+    background-color: #4e4e4e;
+    color: #fff;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+}
+
+#theme-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}

@@ -13,16 +13,47 @@ use Illuminate\Support\Facades\Notification;
 
 class AttendanceController extends Controller
 {
-    public function index()
-    {
-        $users = User::query()->whereIsAdmin(0)->with([
-            "attendance" => function ($q) {
-                $q->whereDate("created_at", Carbon::today())->get();
+    public function index(Request $request)
+{
+    $search = $request->get('search');
+    $status = $request->get('status'); // To filter by attendance status
+    $date = $request->get('date'); // To filter by a specific date
+
+    $users = User::query()
+        ->where('is_admin', 0)
+        ->when($search, function ($query) use ($search) {
+            $query->where(function ($q) use ($search) {
+                $q->whereRaw("CONCAT(first_name, ' ', last_name) LIKE ?", ["%{$search}%"])
+                    ->orWhere('email', 'like', "%{$search}%")
+                    ->orWhereHas('job', function ($q2) use ($search) {
+                        $q2->where('title', 'like', "%{$search}%");
+                    })
+                    ->orWhereHas('job.department', function ($q3) use ($search) {
+                        $q3->where('name', 'like', "%{$search}%");
+                    });
+            });
+        })
+        ->when($status, function ($query) use ($status) {
+            $query->whereHas('attendance', function ($q) use ($status) {
+                $q->where('status', $status);
+            });
+        })
+        ->when($date, function ($query) use ($date) {
+            $query->whereHas('attendance', function ($q) use ($date) {
+                $q->whereDate('created_at', Carbon::parse($date));
+            });
+        })
+        ->with([
+            'attendance' => function ($q) {
+                $q->whereDate('created_at', Carbon::today());
             }
-        ])->paginate(15);
-        // return $users;
-        return view('attendances.index', compact("users"));
-    }
+        ])
+        ->orderByDesc('created_at')
+        ->paginate(15);
+
+    return view('attendances.index', compact("users"));
+}
+
 
     public function takeAttendance()
     {

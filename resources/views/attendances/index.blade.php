@@ -24,7 +24,24 @@ $title = 'Emplloyee Attendances';
         </ol>
       </nav>
       <h2 class="h4">All {{ $title }}s</h2>
+      <div>
+
+      <form method="GET" action="{{ route('attendances.index') }}" class="d-flex mb-3">
+    <input type="text" name="search" class="form-control" placeholder="Search by user name or date" value="{{ request('search') }}">
+    <input type="date" name="date" class="form-control ms-2" value="{{ request('date') }}">
+    <select name="status" class="form-select ms-2">
+        <option value="">Select Status</option>
+        <option value="0" {{ request('status') == '0' ? 'selected' : '' }}>At Work</option>
+        <option value="1" {{ request('status') == '1' ? 'selected' : '' }}>Absent</option>
+        <option value="2" {{ request('status') == '2' ? 'selected' : '' }}>Late</option>
+    </select>
+    <button type="submit" class="btn btn-primary ms-2">Search</button>
+</form>
+
     </div>
+    </div>
+
+    
     <div class="btn-toolbar mb-md-0 mb-2">
       <a href="{{ route('attendances.take-attendance') }}" class="btn btn-sm btn-gray-800 d-inline-flex align-items-center animate-up-2">
         <svg class="icon icon-xs me-2" viewBox="0 0 20 20" fill="currentColor">

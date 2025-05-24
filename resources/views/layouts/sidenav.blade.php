@@ -39,7 +39,8 @@
       </li> --}}
 
       {{-- USER ROUTES --}}
-      @if (!auth()->user()->is_admin)
+      @if (auth()->check() && !auth()->user()->is_admin)
+
         <li class="nav-item {{ Request::routeIs('profile') ? 'active' : '' }}">
           <a href="{{ route('profile') }}" class="nav-link">
             <span class="sidebar-icon">
@@ -64,7 +65,8 @@
         </li>
       @endif
 
-      @if (auth()->user()->is_admin)
+      @if (auth()->check() && auth()->user()->is_admin)
+
         <li class="nav-item {{ Request::routeIs('dashboard') ? 'active' : '' }}">
           <a href="{{ route('dashboard') }}" class="nav-link">
             <span class="sidebar-icon"> <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -137,6 +139,37 @@
               <li class="nav-item {{ Request::routeIs('attendances.take-attendance') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('attendances.take-attendance') }}">
                   <span class="sidebar-text">Take Attendance</span>
+                </a>
+              </li>
+
+            </ul>
+          </div>
+        </li>
+
+        <li class="nav-item {{ Request::routeIs('leave.*') ? 'active' : '' }}">
+          <span class="nav-link collapsed d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#submenu-pages">
+            <span>
+              <span class="sidebar-icon">
+                <svg class="icon icon-xs me-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                </svg>
+              </span>
+              <span class="sidebar-text">Leave</span>
+            </span>
+            <span class="link-arrow"><svg class="icon icon-sm" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+              </svg></span>
+          </span>
+          <div class="multi-level {{ Request::routeIs('leave.*') ? '' : 'collapse' }}" role="list" id="submenu-pages" aria-expanded="false">
+            <ul class="flex-column nav">
+              <li class="nav-item {{ Request::routeIs('leave.index') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('leave.index') }}">
+                  <span class="sidebar-text">Leave</span>
+                </a>
+              </li>
+              <li class="nav-item {{ Request::routeIs('leave.take-leave') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('leave.take-leave') }}">
+                  <span class="sidebar-text">Take Leave</span>
                 </a>
               </li>
 
